@@ -54,12 +54,12 @@ describe('Card', () => {
   test('Should handle the battle stats of a creature type card.', () => {
     const card = new Card('serra angel', '3WW', 'creature', 'white', '4/4')
 
-    expect(card.cardBattleStats).toBe('4/4')
+    expect(card.cardPowerToughness).toBe('4/4')
   })
 
   test('Should handle the battle stats of a non-creature type card', () => {
     const card = new Card('counterspell', 'UU', 'instant', 'blue', '')
 
-    expect(card.cardBattleStats).toStrictEqual([])
+    expect(card.cardPowerToughness).toBe('')
   })
 })

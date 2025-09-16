@@ -10,24 +10,23 @@ export default class Card {
    * @param {string} cardManaCost - The mana cost using MTG notation (X, W, U, B, R, G, 0-9)
    * @param {string} cardType - The card type (instant, sorcery, creature, enchantment, land, artifact, planeswalker)
    * @param {string} cardColor - The card color(s) (white, blue, black, red, green, colorless  or a combination e.g. white green)
-   * @param {string} cardBattleStats - Power/toughness for creatures only, in format "power/toughness" (e.g., "2/2"), empty string for non-creatures
+   * @param {string} cardPowerToughness - Power/toughness for creatures only, in format "power/toughness" (e.g., "2/2"), empty string for non-creatures
    */
-  constructor (cardName, cardManaCost, cardType, cardColor, cardBattleStats) {
-    this.cardName = this.#validateCardName(cardName)
-    this.cardManaCost = this.#validateManaCost(cardManaCost)
-    this.cardType = this.#validateCardType(cardType)
-    this.cardColor = this.#validateCardColors(cardColor)
-    this.cardBattleStats = this.#validateCardBattleStats(cardBattleStats)
+  constructor (cardName, cardManaCost, cardType, cardColor, cardPowerToughness) {
+    this.cardName = this.#processCardName(cardName)
+    this.cardManaCost = this.#processManaCost(cardManaCost)
+    this.cardType = this.#processCardType(cardType)
+    this.cardColor = this.#processCardColors(cardColor)
+    this.cardPowerToughness = this.#processcardpowerToughness(cardPowerToughness)
   }
 
   /**
-   * Validates and normalizes the card name.
+   * Processes the card name.
    *
-   * @private
-   * @param {string} cardName - The card name to validate
-   * @returns {string} The normalized card name (trimmed and lowercase)
+   * @param {string} cardName - The card name to process
+   * @returns {string} the processed card name
    */
-  #validateCardName (cardName) {
+  #processCardName (cardName) {
     const validNamePattern = /^[A-Za-z0-9\s,'-]+$/
 
     if (!cardName || cardName.trim() === '') {
@@ -42,17 +41,17 @@ export default class Card {
   }
 
   /**
-   * Validates the mana cost using Magic: The Gathering notation.
+   * Processes the mana cost using Magic: The Gathering notation.
    *
    * @private
    * @param {string} cardManaCost - The mana cost to validate
    * @returns {string} The original mana cost if valid
    */
-  #validateManaCost (cardManaCost) {
-    const validcardManaCosts = /^[XWUBRG0-9]*$/
+  #processManaCost (cardManaCost) {
+    const validManaPattern = /^[XWUBRG0-9]*$/
     const normalizedcardManaCost = cardManaCost.toUpperCase()
 
-    if (!validcardManaCosts.test(normalizedcardManaCost)) {
+    if (!validManaPattern.test(normalizedcardManaCost)) {
       throw new Error(`Invalid mana cost: ${cardManaCost}. Must contain only: X, W, U, B, R, G, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, ''`)
     }
 
@@ -60,13 +59,13 @@ export default class Card {
   }
 
   /**
-   * Validates and normalizes the card type.
+   * Processes the card type.
    *
    * @private
    * @param {string} cardType - The card type to validate
    * @returns {string} The normalized card type
    */
-  #validateCardType (cardType) {
+  #processCardType (cardType) {
     const validCardTypes = ['instant', 'sorcery', 'creature', 'enchantment', 'land', 'artifact', 'planeswalker']
     const normalizedType = cardType.toLowerCase()
 
@@ -78,47 +77,47 @@ export default class Card {
   }
 
   /**
-   * Validates and processes card colors (supports multiple colors).
+   * Processes card colors (supports multiple colors).
    *
    * @private
    * @param {string} cardColor - Space-separated color names
    * @returns {string[]} Array of normalized color names
    */
-  #validateCardColors (cardColor) {
+  #processCardColors (cardColor) {
     const validCardColors = ['white', 'blue', 'black', 'red', 'green', 'colorless']
 
-    const colors = cardColor.toLowerCase().split(' ')
+    const colorArray = cardColor.toLowerCase().split(' ')
       .map(color => color.trim())
 
-    for (const color of colors) {
+    for (const color of colorArray) {
       if (!validCardColors.includes(color)) {
         throw new Error(`Invalid card color: ${cardColor}. Must be one of: ${validCardColors.join(', ')}`)
       }
     }
-    return colors
+    return colorArray
   }
 
   /**
-   * Validates creature battle stats (power/toughness) or returns empty array for non-creatures.
+   * Processes creature battle stats (power/toughness) or returns empty string for non-creatures.
    *
    * @private
-   * @param {string} cardBattleStats - Power/toughness in format "power/toughness"
-   * @returns {string[]} Trimmed battle stats string for creatures, empty array for non-creatures
+   * @param {string} cardPowerToughness - Power/toughness in format "power/toughness"
+   * @returns {string} Trimmed battle stats string for creatures
    */
-  #validateCardBattleStats (cardBattleStats) {
+  #processcardpowerToughness (cardPowerToughness) {
     if (this.cardType === 'creature') {
-      if (!cardBattleStats || cardBattleStats.trim() === '') {
+      if (!cardPowerToughness || cardPowerToughness.trim() === '') {
         throw new Error('Creatures must have power/toughness')
       }
 
       const validBattleStats = /^[\d*X-]+\/[\d*X-]+$/
-      if (!validBattleStats.test(cardBattleStats.trim())) {
-        throw new Error(`Invalid creature battle stats: ${cardBattleStats}. Must have format "power/toughness"`)
+      if (!validBattleStats.test(cardPowerToughness.trim())) {
+        throw new Error(`Invalid creature battle stats: ${cardPowerToughness}. Must have format "power/toughness"`)
       }
 
-      return cardBattleStats.trim()
+      return cardPowerToughness.trim()
     } else {
-      return []
+      return ''
     }
   }
 }
