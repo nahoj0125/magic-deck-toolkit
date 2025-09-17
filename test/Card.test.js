@@ -59,7 +59,6 @@ describe('Card', () => {
 
   test('Should handle the power and toughness of a non-creature type card', () => {
     const card = new Card('counterspell', 'UU', 'instant', 'blue', '')
-
     expect(card.cardPowerToughness).toBe('')
   })
 })

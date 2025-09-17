@@ -1,6 +1,8 @@
 /**
  * Represents a Magic: The Gathering card with validation for all properties.
- * Example of a card {"Lighning Bolt", "R", "Instant", "R", ""}
+ *
+ * @example const card = new Card('lightning Bolt', 'R', 'instant', 'red', '')
+ * @example const card = new Card('ghalta, primal hunger', '10GG', 'creature', 'green', '12/12')
  */
 export default class Card {
   /**
@@ -21,8 +23,9 @@ export default class Card {
   }
 
   #processCardName (cardName) {
+    // Standard processing: check for empty/whitespace -> extract name -> validate format
     if (this.#isCardNameEmptyOrWhiteSpace(cardName)) {
-      throw new Error('Card name cannot be mpty or just whitespace.')
+      throw new Error('Card name cannot be empty or just whitespace.')
     }
 
     const name = this.#extractName(cardName)
@@ -43,6 +46,7 @@ export default class Card {
   }
 
   #validateName(cardName) {
+    // Allows: letters, numbers, spaces, commas, apostrophes, hyphens
     const validNamePattern = /^[A-Za-z0-9\s,'-]+$/
 
     if (!validNamePattern.test(cardName)) {
@@ -51,6 +55,7 @@ export default class Card {
   }
 
   #processManaCost (cardManaCost) {
+    // Standard processing: extract name -> validate format
     const manaCost = this.#extractManaCost(cardManaCost)
     this.#validateManaCost(manaCost)
 
@@ -62,6 +67,7 @@ export default class Card {
   }
 
   #validateManaCost (cardManaCost) {
+    // Allows: X, W, U, B, R, G, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, ''
     const validManaPattern = /^[XWUBRG0-9]*$/
 
     if (!validManaPattern.test(cardManaCost)) {
@@ -70,6 +76,7 @@ export default class Card {
   }
 
   #processCardType (cardType) {
+    // Standard processing: check for empty/whitespace -> extract name -> validate format
     if (this.#isCardTypeEmptyOrWhiteSpace(cardType)) {
       throw new Error('Card type cannot be empty or just whitespace..')
     }
@@ -101,6 +108,7 @@ export default class Card {
   }
 
   #processCardColors (cardColor) {
+    // Standard processing: check for empty/whitespace -> extract name -> validate format
     if (this.#isCardColorEmptyOrWhiteSpace(cardColor)) {
       throw new Error('Card color cannot be empty or just whitespace..')
     }
@@ -119,6 +127,7 @@ export default class Card {
   }
 
   #extractColors (cardColor) {
+    // Split on whitespace, trim each color, filter out empty strings
     return cardColor.toLowerCase().split(/\s+/).map(color => color.trim()).filter(color => color.trim())
   }
 
@@ -132,6 +141,8 @@ export default class Card {
   }
 
   #processCardPowerToughness (cardPowerToughness) {
+    // Non-creatures don't need power/toughness
+    // Standard processing: check if creature -> validate empty -> validate format
     if (!this.#isCardTypeCreature(cardPowerToughness)) {
       return ''
     }
@@ -163,6 +174,7 @@ export default class Card {
   }
 
   #validatePowerToughness (cardPowerToughness) {
+    // Allows: digits, asterisk (*), X, hyphen (-) on both sides of required slash (/)
     const validPowerToughness = /^[\d*X-]+\/[\d*X-]+$/
     if (!validPowerToughness.test(cardPowerToughness)) {
       throw new Error(`Invalid power/toughness: ${cardPowerToughness}. Must have format "power/toughness"`)
