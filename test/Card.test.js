@@ -1,4 +1,4 @@
-import { expect } from '@jest/globals'
+import { describe, expect } from '@jest/globals'
 import Card from '../src/Card.js'
 
 describe('Card', () => {
@@ -51,13 +51,13 @@ describe('Card', () => {
     }).toThrow()
   })
 
-  test('Should handle the battle stats of a creature type card.', () => {
+  test('Should handle the power and toughness of a creature type card.', () => {
     const card = new Card('serra angel', '3WW', 'creature', 'white', '4/4')
 
     expect(card.cardPowerToughness).toBe('4/4')
   })
 
-  test('Should handle the battle stats of a non-creature type card', () => {
+  test('Should handle the power and toughness of a non-creature type card', () => {
     const card = new Card('counterspell', 'UU', 'instant', 'blue', '')
 
     expect(card.cardPowerToughness).toBe('')
