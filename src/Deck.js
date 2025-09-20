@@ -31,7 +31,7 @@ export default class Deck {
         card.cardManaCost,
         card.cardType,
         card.cardColor,
-        card.cardBattleStats
+        card.cardPowerToughness
       )
       this.cards.push(cardToBeAdded)
     }
