@@ -11,7 +11,7 @@ describe('ManaAnalyzer', () => {
       cardManaCost: 'UU',
       cardType: 'instant',
       cardColor: 'blue',
-      cardPowerToughness: ''
+      cardPowerToughness: '',
     })
 
     deck.addNewCard({
@@ -19,15 +19,15 @@ describe('ManaAnalyzer', () => {
       cardManaCost: 'R',
       cardType: 'instant',
       cardColor: 'red',
-      cardPowerToughness: ''
+      cardPowerToughness: '',
     })
 
     deck.addNewCard({
       cardName: 'ghalta, primal hunger',
-      cardManaCost: 'GG10',  
+      cardManaCost: 'GG10',
       cardType: 'creature',
       cardColor: 'green',
-      cardPowerToughness: '12/12'
+      cardPowerToughness: '12/12',
     })
 
     const analyzer = new ManaAnalyzer(deck)
@@ -44,7 +44,7 @@ describe('ManaAnalyzer', () => {
       cardManaCost: 'UU',
       cardType: 'instant',
       cardColor: 'blue',
-      cardPowerToughness: ''
+      cardPowerToughness: '',
     })
 
     deck.addNewCard({
@@ -52,20 +52,60 @@ describe('ManaAnalyzer', () => {
       cardManaCost: 'R',
       cardType: 'instant',
       cardColor: 'red',
-      cardPowerToughness: ''
+      cardPowerToughness: '',
     })
 
     deck.addNewCard({
       cardName: 'ghalta, primal hunger',
-      cardManaCost: 'GG10',  
+      cardManaCost: 'GG10',
       cardType: 'creature',
       cardColor: 'green',
-      cardPowerToughness: '12/12'
+      cardPowerToughness: '12/12',
     })
 
     const analyzer = new ManaAnalyzer(deck)
     const averageManaCost = analyzer.getAverageManaCost()
 
     expect(averageManaCost).toBe(5)
+  })
+
+  test('Should return color distribution of the deck.', () => {
+    const deck = new Deck('Johans deck')
+
+    deck.addNewCard({
+      cardName: 'counterspell',
+      cardManaCost: 'UU',
+      cardType: 'instant',
+      cardColor: 'blue',
+      cardPowerToughness: '',
+    })
+
+    deck.addNewCard({
+      cardName: 'lightning bolt',
+      cardManaCost: 'R',
+      cardType: 'instant',
+      cardColor: 'red',
+      cardPowerToughness: '',
+    })
+
+    deck.addNewCard({
+      cardName: 'ghalta, primal hunger',
+      cardManaCost: 'GG10',
+      cardType: 'creature',
+      cardColor: 'green',
+      cardPowerToughness: '12/12',
+    })
+
+    const analyzer = new ManaAnalyzer(deck)
+    const colorDistribution = analyzer.getColorDistributionOfCardsInDeck()
+
+    expect(colorDistribution).toEqual({
+      white: 0,
+      blue: 1,
+      black: 0,
+      red: 1,
+      green: 1,
+      colorless: 0,
+    })
   })
 })

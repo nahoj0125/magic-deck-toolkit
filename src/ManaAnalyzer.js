@@ -1,6 +1,5 @@
 // Represents a analyzer for mana costs on a Magic: the Gathering deck.
 export default class ManaAnalyzer {
-
   /**
    * Creates a new Magic: The Gathering mana analyzer.
    *
@@ -14,7 +13,7 @@ export default class ManaAnalyzer {
     const cards = this.deck.cards
     const manaCurve = {}
 
-    cards.forEach(card => {
+    cards.forEach((card) => {
       const coloredMana = this.#countColorManaSymbols(card.cardManaCost)
       const uncoloredMana = this.#countUncoloredManaSymbols(card.cardManaCost)
       const totalMana = coloredMana + uncoloredMana
@@ -27,7 +26,7 @@ export default class ManaAnalyzer {
 
   // Cards with mana costs:
   // "R" → 1 colored symbol
-  // "UU" → 2 colored symbols  
+  // "UU" → 2 colored symbols
   // "10GG" → 2 colored symbols (ignores the "10")
   #countColorManaSymbols(manaCost) {
     const validManaPattern = /[XWUBRG]/g
@@ -35,32 +34,61 @@ export default class ManaAnalyzer {
     return matchesFromManaPattern ? matchesFromManaPattern.length : 0
   }
 
-  #countUncoloredManaSymbols(manaCost){
+  #countUncoloredManaSymbols(manaCost) {
     const numericMatch = manaCost.match(/\d+/)
     return numericMatch ? parseInt(numericMatch[0]) : 0
   }
 
   getAverageManaCost() {
-  // Convert mana curve object to array of [manaValue, occurrenceCount] pairs
-  // Example: { 1: 1, 2: 1, 12: 1 } becomes [['1', 1], ['2', 1], ['12', 1]]
-  const manaCurve = Object.entries(this.getManaCurve())
-  const result = this.#manaCurveReducer(manaCurve)
+    // Convert mana curve object to array of [manaValue, occurrenceCount] pairs
+    // Example: { 1: 1, 2: 1, 12: 1 } becomes [['1', 1], ['2', 1], ['12', 1]]
+    const manaCurve = Object.entries(this.getManaCurve())
+    const result = this.#manaCurveReducer(manaCurve)
 
-  return result.sum / result.count
+    return result.sum / result.count
   }
 
   // Reduces mana curve data to sum and count needed for average calculation
   // Expected input: array of [manaValue, occurrenceCount] pairs
   #manaCurveReducer(manaCurve) {
-    return manaCurve.reduce((accumulator, [mana, occurence]) => {
-      const manaValue = Number(mana)
-      const occurenceCounter = Number(occurence)
+    return manaCurve.reduce(
+      (accumulator, [mana, occurence]) => {
+        const manaValue = Number(mana)
+        const occurenceCounter = Number(occurence)
 
-      return {
-        sum: accumulator.sum + (manaValue * occurenceCounter),
-        count: accumulator.count + occurenceCounter
-      }
-    }, {sum: 0, count: 0})
+        return {
+          sum: accumulator.sum + manaValue * occurenceCounter,
+          count: accumulator.count + occurenceCounter,
+        }
+      },
+      { sum: 0, count: 0 }
+    )
   }
 
+  getColorDistributionOfCardsInDeck() {
+    const colorDistribution = {
+      white: 0,
+      blue: 0,
+      black: 0,
+      red: 0,
+      green: 0,
+      colorless: 0,
+    }
+
+    this.#countColorsInDeck(colorDistribution)
+
+    return colorDistribution
+  }
+
+  #countColorsInDeck(colorDistribution) {
+    for (const card of this.deck.cards) {
+      this.#countColorsInCard(card, colorDistribution)
+    }
+  }
+
+  #countColorsInCard(card, colorDistribution) {
+    for (const color of card.cardColor) {
+      colorDistribution[color]++
+    }
+  }
 }
