@@ -108,4 +108,41 @@ describe('ManaAnalyzer', () => {
       colorless: 0,
     })
   })
+
+  test('Should calculate percentages of mana curve', () => {
+    const deck = new Deck('Johans deck')
+
+    deck.addNewCard({
+      cardName: 'counterspell',
+      cardManaCost: 'UU',
+      cardType: 'instant',
+      cardColor: 'blue',
+      cardPowerToughness: '',
+    })
+
+    deck.addNewCard({
+      cardName: 'lightning bolt',
+      cardManaCost: 'R',
+      cardType: 'instant',
+      cardColor: 'red',
+      cardPowerToughness: '',
+    })
+
+    deck.addNewCard({
+      cardName: 'ghalta, primal hunger',
+      cardManaCost: 'GG10',
+      cardType: 'creature',
+      cardColor: 'green',
+      cardPowerToughness: '12/12',
+    })
+
+    const analyzer = new ManaAnalyzer(deck)
+    const percentages = analyzer.getManaCurvePercentages()
+
+    expect(percentages).toEqual({
+      1: 33,
+      2: 33,
+      12: 33,
+    })
+  })
 })

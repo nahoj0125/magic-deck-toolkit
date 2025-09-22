@@ -91,4 +91,20 @@ export default class ManaAnalyzer {
       colorDistribution[color]++
     }
   }
+
+  getManaCurvePercentages() {
+    const totalAmountCards = this.deck.cards.length
+    const manaCurve = this.getManaCurve()
+    const percentages = this.#convertManaCurveToPercentages(manaCurve, totalAmountCards)
+
+    return percentages
+  }
+
+  #convertManaCurveToPercentages(manaCurve, totalAmountCards) {
+    const percentages = {}
+    Object.keys(manaCurve).forEach((cost) => {
+      percentages[cost] = Math.round((manaCurve[cost] / totalAmountCards) * 100)
+    })
+    return percentages
+  }
 }
