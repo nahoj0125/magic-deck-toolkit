@@ -80,17 +80,111 @@ describe('CardTypeAnalyzer', () => {
       cardPowerToughness: '',
     })
 
-    deck.addNewCard({
-      cardName: 'lightning bolt',
-      cardManaCost: 'R',
-      cardType: 'instant',
-      cardColor: 'red',
-      cardPowerToughness: '',
-    })
-
     const analyzer = new CardTypeAnalyzer(deck)
     const landCount = analyzer.getLandCount()
 
     expect(landCount).toBe(1)
+  })
+
+  test('should return the amount of creatures', () => {
+    const deck = new Deck('Johans deck')
+
+    deck.addNewCard({
+      cardName: 'ghalta, primal hunger',
+      cardManaCost: 'GG10',
+      cardType: 'creature',
+      cardColor: 'green',
+      cardPowerToughness: '12/12',
+    })
+
+    const analyzer = new CardTypeAnalyzer(deck)
+    const creatureCount = analyzer.getCreatureCount()
+
+    expect(creatureCount).toBe(1)
+  })
+
+    test('should return the amount of instant', () => {
+    const deck = new Deck('Johans deck')
+
+    deck.addNewCard({
+      cardName: 'counterspell',
+      cardManaCost: 'UU',
+      cardType: 'instant',
+      cardColor: 'blue',
+      cardPowerToughness: '',
+    })
+
+    const analyzer = new CardTypeAnalyzer(deck)
+    const instantCount = analyzer.getInstantCount()
+
+    expect(instantCount).toBe(1)
+  })
+
+    test('should return the amount of sorceries', () => {
+    const deck = new Deck('Johans deck')
+
+    deck.addNewCard({
+      cardName: 'shatter the sky',
+      cardManaCost: '2WW',
+      cardType: 'sorcery',
+      cardColor: 'white',
+      cardPowerToughness: '',
+    })
+
+    const analyzer = new CardTypeAnalyzer(deck)
+    const sorceryCount = analyzer.getSorceryCount()
+
+    expect(sorceryCount).toBe(1)
+  })
+  
+  test('should return the amount of artifacts', () => {
+    const deck = new Deck('Johans deck')
+
+    deck.addNewCard({
+      cardName: 'colossus hammer',
+      cardManaCost: '1',
+      cardType: 'artifact',
+      cardColor: 'colorless',
+      cardPowerToughness: '',
+    })
+
+    const analyzer = new CardTypeAnalyzer(deck)
+    const artifactCount = analyzer.getArtifactCount()
+
+    expect(artifactCount).toBe(1)
+  })
+
+    test('should return the amount of enchantment', () => {
+    const deck = new Deck('Johans deck')
+
+    deck.addNewCard({
+      cardName: 'banishing light',
+      cardManaCost: '2W',
+      cardType: 'enchantment',
+      cardColor: 'white',
+      cardPowerToughness: '',
+    })
+
+    const analyzer = new CardTypeAnalyzer(deck)
+    const enchantmentCount = analyzer.getEnchantmentCount()
+
+    expect(enchantmentCount).toBe(1)
+  })
+
+  test('should return the amount of planeswalkers', () => {
+    const deck = new Deck('Johans deck')
+
+    deck.addNewCard({
+      cardName: 'elspeth, undaunted hero',
+      cardManaCost: '3W',
+      cardType: 'planeswalker',
+      cardColor: 'white',
+      cardPowerToughness: '',
+    })
+
+    const analyzer = new CardTypeAnalyzer(deck)
+    const planewalkerCount = analyzer.getPlaneswalkerCount()
+
+    expect(planewalkerCount).toBe(1)
   })
 })
