@@ -24,35 +24,17 @@ export default class CardTypeAnalyzer {
       'planeswalker',
     ]
 
-    return this.#countPermanentCards(permanentTypes)
-  }
+    const distribution = this.getTypeDistribution()
 
-  #countPermanentCards(permanentTypes) {
     let count = 0
-    for (const card of this.deck.cards) {
-      if (this.#isPermanentType(card, permanentTypes)) {
-        count++
-      }
-    }
+    permanentTypes.forEach(type => {
+      count += distribution[type] || 0
+    })
     return count
-  }
-
-  #isPermanentType(card, permanentTypes) {
-    return permanentTypes.includes(card.cardType)
   }
 
   getLandCount(){
-    let count = 0
-
-    for(const card of this.deck.cards) {
-      if(this.#isLandType(card)) {
-        count++
-      }
-    }
-    return count
-  }
-
-  #isLandType(card) {
-    return card.cardType == 'land'
+    const distribution = this.getTypeDistribution()
+    return distribution.land || 0
   }
 }
