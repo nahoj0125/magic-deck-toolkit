@@ -36,7 +36,7 @@ describe('CardTypeAnalyzer', () => {
     expect(cardTypeDistribution).toEqual({ instant: 2, creature: 1 })
   })
 
-  test('should return how many permannts from a deck', () => {
+  test('should return how many permanents from a deck', () => {
     const deck = new Deck('Johans deck')
 
     deck.addNewCard({
@@ -64,7 +64,7 @@ describe('CardTypeAnalyzer', () => {
     })
 
     const analyzer = new CardTypeAnalyzer(deck)
-    const permanentCount = analyzer.getPermanentTypeCardDistribution()
+    const permanentCount = analyzer.getPermanentTypeCardCount()
 
     expect(permanentCount).toBe(1)
   })
@@ -186,5 +186,141 @@ describe('CardTypeAnalyzer', () => {
     const planewalkerCount = analyzer.getPlaneswalkerCount()
 
     expect(planewalkerCount).toBe(1)
+  })
+
+  test('should return amount of temporary spells', () => {
+    const deck = new Deck('Johans deck')
+
+    deck.addNewCard({
+      cardName: 'counterspell',
+      cardManaCost: 'UU',
+      cardType: 'instant',
+      cardColor: 'blue',
+      cardPowerToughness: '',
+    })
+
+    deck.addNewCard({
+      cardName: 'lightning bolt',
+      cardManaCost: 'R',
+      cardType: 'instant',
+      cardColor: 'red',
+      cardPowerToughness: '',
+    })
+
+    deck.addNewCard({
+      cardName: 'ghalta, primal hunger',
+      cardManaCost: 'GG10',
+      cardType: 'creature',
+      cardColor: 'green',
+      cardPowerToughness: '12/12',
+    })
+
+    const analyzer = new CardTypeAnalyzer(deck)
+    const temporarySpellCount = analyzer.getTemporarySpellCount()
+
+    expect(temporarySpellCount).toBe(2)
+  })
+
+    test('should return creature to spell ratio', () => {
+    const deck = new Deck('Johans deck')
+
+    deck.addNewCard({
+      cardName: 'counterspell',
+      cardManaCost: 'UU',
+      cardType: 'instant',
+      cardColor: 'blue',
+      cardPowerToughness: '',
+    })
+
+    deck.addNewCard({
+      cardName: 'ghalta, primal hunger',
+      cardManaCost: 'GG10',
+      cardType: 'creature',
+      cardColor: 'green',
+      cardPowerToughness: '12/12',
+    })
+
+    const analyzer = new CardTypeAnalyzer(deck)
+    const ratio = analyzer.getCreatureToSpellRatio()
+
+    expect(ratio).toBe(1)
+    })
+
+    test('should return control deck type', () => {
+    const deck = new Deck('Johans deck')
+
+    deck.addNewCard({
+      cardName: 'counterspell',
+      cardManaCost: 'UU',
+      cardType: 'instant',
+      cardColor: 'blue',
+      cardPowerToughness: '',
+    })
+
+    deck.addNewCard({
+      cardName: 'ghalta, primal hunger',
+      cardManaCost: 'GG10',
+      cardType: 'creature',
+      cardColor: 'green',
+      cardPowerToughness: '12/12',
+    })
+
+    const analyzer = new CardTypeAnalyzer(deck)
+    const ratio = analyzer.getCreatureToSpellRatio()
+    const deckType = analyzer.getTypeOfDeck(ratio)
+
+    expect(deckType).toBe('midrange')
+    })
+
+  test('should return control deck type', () => {
+    const deck = new Deck('Johans deck')
+
+    deck.addNewCard({
+      cardName: 'counterspell',
+      cardManaCost: 'UU',
+      cardType: 'instant',
+      cardColor: 'blue',
+      cardPowerToughness: '',
+    })
+
+    deck.addNewCard({
+      cardName: 'lightning bolt',
+      cardManaCost: 'R',
+      cardType: 'instant',
+      cardColor: 'red',
+      cardPowerToughness: '',
+    })
+
+    const analyzer = new CardTypeAnalyzer(deck)
+    const ratio = analyzer.getCreatureToSpellRatio()
+    const deckType = analyzer.getTypeOfDeck(ratio)
+
+    expect(deckType).toBe('control')
+  })
+
+    test('should return aggressive deck type', () => {
+    const deck = new Deck('Johans deck')
+
+    deck.addNewCard({
+      cardName: 'ghalta, primal hunger',
+      cardManaCost: 'GG10',
+      cardType: 'creature',
+      cardColor: 'green',
+      cardPowerToughness: '12/12',
+    })
+
+    deck.addNewCard({
+      cardName: 'serra angel',
+      cardManaCost: '3WW',
+      cardType: 'creature',
+      cardColor: 'white',
+      cardPowerToughness: '4/4'
+    })
+
+    const analyzer = new CardTypeAnalyzer(deck)
+    const ratio = analyzer.getCreatureToSpellRatio()
+    const deckType = analyzer.getTypeOfDeck(ratio)
+
+    expect(deckType).toBe('aggressive')
   })
 })

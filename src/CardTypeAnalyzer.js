@@ -15,24 +15,6 @@ export default class CardTypeAnalyzer {
     return cardTypeDistribution
   }
 
-  getPermanentTypeCardDistribution() {
-    const permanentTypes = [
-      'creature',
-      'enchantment',
-      'land',
-      'artifact',
-      'planeswalker',
-    ]
-
-    const distribution = this.getTypeDistribution()
-
-    let count = 0
-    permanentTypes.forEach((type) => {
-      count += distribution[type] || 0
-    })
-    return count
-  }
-
   getLandCount() {
     const distribution = this.getTypeDistribution()
     return distribution.land || 0
@@ -66,5 +48,73 @@ export default class CardTypeAnalyzer {
   getPlaneswalkerCount() {
     const distribution = this.getTypeDistribution()
     return distribution.planeswalker || 0
+  }
+
+  getPermanentTypeCardCount() {
+    const permanentTypes = [
+      'creature',
+      'enchantment',
+      'land',
+      'artifact',
+      'planeswalker',
+    ]
+    const distribution = this.getTypeDistribution()
+    let count = 0
+
+    permanentTypes.forEach((type) => {
+      count += distribution[type] || 0
+    })
+    return count
+  }
+
+  getTemporarySpellCount() {
+    const temporarySpell = ['instant', 'sorcery']
+    const distribution = this.getTypeDistribution()
+    let count = 0
+
+    temporarySpell.forEach((type) => {
+      count += distribution[type] || 0
+    })
+
+    return count
+  }
+
+  getCreatureToSpellRatio() {
+    const creatures = this.getCreatureCount()
+    const temporarySpells = this.getTemporarySpellCount()
+
+    return Math.round((creatures / temporarySpells) * 100) / 100
+  }
+
+  getCreatureToSpellRatio() {
+    const creatures = this.getCreatureCount()
+    const temporarySpells = this.getTemporarySpellCount()
+
+    return Math.round((creatures / temporarySpells) * 100) / 100
+  }
+
+  getTypeOfDeck(creatureToSpellRatio) {
+    if (this.#isDeckAggressive(creatureToSpellRatio)) {
+      return 'aggressive'
+    }
+    if (this.#isDeckControl(creatureToSpellRatio)) {
+      return 'control'
+    }
+
+    if (this.#isDeckMidrange(creatureToSpellRatio)) {
+      return 'midrange'
+    }
+  }
+
+  #isDeckAggressive(creatureToSpellRatio) {
+    return creatureToSpellRatio > 1.5
+  }
+  
+  #isDeckControl(creatureToSpellRatio) {
+    return creatureToSpellRatio < 0.8
+  }
+
+  #isDeckMidrange(creatureToSpellRatio) {
+    return creatureToSpellRatio >=0.8 && creatureToSpellRatio <= 1.5
   }
 }
