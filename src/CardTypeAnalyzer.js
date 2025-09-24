@@ -67,12 +67,12 @@ export default class CardTypeAnalyzer {
     return count
   }
 
-  getTemporarySpellCount() {
-    const temporarySpell = ['instant', 'sorcery']
+  getTemporarySpellsCount() {
+    const temporarySpells = ['instant', 'sorcery']
     const distribution = this.getTypeDistribution()
     let count = 0
 
-    temporarySpell.forEach((type) => {
+    temporarySpells.forEach((type) => {
       count += distribution[type] || 0
     })
 
@@ -81,14 +81,7 @@ export default class CardTypeAnalyzer {
 
   getCreatureToSpellRatio() {
     const creatures = this.getCreatureCount()
-    const temporarySpells = this.getTemporarySpellCount()
-
-    return Math.round((creatures / temporarySpells) * 100) / 100
-  }
-
-  getCreatureToSpellRatio() {
-    const creatures = this.getCreatureCount()
-    const temporarySpells = this.getTemporarySpellCount()
+    const temporarySpells = this.getTemporarySpellsCount()
 
     return Math.round((creatures / temporarySpells) * 100) / 100
   }
@@ -97,13 +90,15 @@ export default class CardTypeAnalyzer {
     if (this.#isDeckAggressive(creatureToSpellRatio)) {
       return 'aggressive'
     }
-    if (this.#isDeckControl(creatureToSpellRatio)) {
+
+    else if (this.#isDeckControl(creatureToSpellRatio)) {
       return 'control'
     }
 
-    if (this.#isDeckMidrange(creatureToSpellRatio)) {
+    else if (this.#isDeckMidrange(creatureToSpellRatio)) {
       return 'midrange'
-    }
+    } 
+      return 'undecided'
   }
 
   #isDeckAggressive(creatureToSpellRatio) {

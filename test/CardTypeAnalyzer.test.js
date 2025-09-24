@@ -216,9 +216,9 @@ describe('CardTypeAnalyzer', () => {
     })
 
     const analyzer = new CardTypeAnalyzer(deck)
-    const temporarySpellCount = analyzer.getTemporarySpellCount()
+    const temporarySpellsCount = analyzer.getTemporarySpellsCount()
 
-    expect(temporarySpellCount).toBe(2)
+    expect(temporarySpellsCount).toBe(2)
   })
 
     test('should return creature to spell ratio', () => {
