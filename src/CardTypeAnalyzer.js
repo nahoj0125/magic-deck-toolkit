@@ -82,8 +82,25 @@ export default class CardTypeAnalyzer {
   getCreatureToSpellRatio() {
     const creatures = this.getCreatureCount()
     const temporarySpells = this.getTemporarySpellsCount()
+    let ratio
 
-    return Math.round((creatures / temporarySpells) * 100) / 100
+    if (temporarySpells == 0) {
+      ratio = this.#handleZeroSpells(creatures)
+    } else {
+      ratio = creatures / temporarySpells
+    }
+
+    return Math.round(ratio * 100) / 100
+  }
+
+  // Handles division with 0
+  #handleZeroSpells(creatures) {
+    if (creatures > 0) {
+      // Returns a large number to trigger getTypeOfDeck()
+      return 999
+    } else {
+      return 0
+    }
   }
 
   getTypeOfDeck(creatureToSpellRatio) {
