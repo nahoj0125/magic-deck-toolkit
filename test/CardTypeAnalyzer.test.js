@@ -246,6 +246,31 @@ describe('CardTypeAnalyzer', () => {
     expect(ratio).toBe(1)
     })
 
+  test('should return creature to spell ratio when there are no temporary spells', () => {
+    const deck = new Deck('Johans deck')
+
+    deck.addNewCard({
+      cardName: 'serra angel',
+      cardManaCost: '3WW',
+      cardType: 'creature',
+      cardColor: 'white',
+      cardPowerToughness: '4/4'
+    })
+
+    deck.addNewCard({
+      cardName: 'reassembling skeleton',
+      cardManaCost: '1B',
+      cardType: 'creature',
+      cardColor: 'black',
+      cardPowerToughness: '1/1'
+    })
+
+    const analyzer = new CardTypeAnalyzer(deck)
+    const ratio = analyzer.getCreatureToSpellRatio()
+
+    expect(ratio).toBe(999)
+    })
+
     test('should return control deck type', () => {
     const deck = new Deck('Johans deck')
 
