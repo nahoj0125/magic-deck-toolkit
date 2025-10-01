@@ -8,7 +8,7 @@
 | `#manaCurveReducer()` | Metodnamn på metod som tar fram värden som behövs för att räkna ut medelvärdet. | **Intention-Revealing Names:** metoden berättar inte vad den gör, utan hur implementationen är gjort.<br><br>**Avoid Mental Mapping:** istället för att kommunicera vad metoden gör så måste läsaren komma ihåg att "reducer" tar fram värden för att räkna ut medelvärden.<br><br>**Method Names:** `#manaCurveReducer()` är inte ett verb vilket gör det oklart vad det är som händer. Nu låter det som "Den där som använder reducer" istället för vad som händer. |
 | `getTypeOfDeck()` | Metodnamn på metod som tar fram kortlekens arketyp. | **Make Meaningful Distinctions:** Det finns flera olika saker "type" kan betyda nu som skapar förvirring.<br><br>**Use Pronounceable Names:** Metodens namn är enkel att uttala. |
 | `#handleZeroSpells()` | Metodname på metod som hanterar division med 0 | **Avoid Mental Mapping:** Namnet kommunicerar inte hur divisionen hanteras. |
-| `getColorDistributionOfCardsInDeck()` | | **Use Pronounceable Names:** metodnamnet är lite långt och blir således svårt att uttala.<br><br>**Don't Add Gratuitous Context:** Det finns redan information som är uppenbar. `getColorDistribution()` är tillräckligt. |
+| `getColorDistributionOfCardsInDeck()` | Metodnamn på metod som räknar hur många kort av varje färg som finns i deck | **Use Pronounceable Names:** metodnamnet är lite långt och blir således svårt att uttala.<br><br>**Don't Add Gratuitous Context:** Det finns redan information som är uppenbar. `getColorDistribution()` är tillräckligt. |
 
 
 
