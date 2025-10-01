@@ -229,7 +229,7 @@ Found a bug? Please [open an issue](https://github.com/yourusername/magic-deck-t
 
 ## License
 
-[MIT](./LICENSE.txt)
+[MIT](./LICENSE)
 
 ## Author
 - Johan Persson
