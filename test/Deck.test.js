@@ -137,7 +137,6 @@ describe('Deck', () => {
     })
 
     const cards = deck.getCards()
-    console.log(cards)
     expect(cards[0].cardName).toBe('counterspell')
     expect(cards[0].cardManaCost).toBe('UU')
     expect(cards[0].cardType).toBe('instant')
