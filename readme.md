@@ -16,7 +16,9 @@ A JavaScript module for managing and analyzing Magic: The Gathering decks. This 
 
 ## Installation
 ```
-npm install magic-deck-toolkit
+git clone https://github.com/nahoj0125/magic-deck-toolkit.git
+cd magic-deck-toolkit
+npm install
 ```
 
 ## Usage
