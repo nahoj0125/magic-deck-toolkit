@@ -21,18 +21,18 @@ export default class Deck {
    * @param {object} card - The card object to be added to the deck with properties (cardName, cardManaCost, cardType, cardColor, cardPowerToughness)
    * @param {number} [quantity=1] - The number of copies of this card to add to the deck, default = 1
    */
-  addNewCard (card, quantity = 1) {
+  addCard (card, quantity = 1) {
     if (this.cards.length + quantity > 60) {
       throw new Error(`$Cannot add ${card}: max size of the deck is 60.`)
     }
     for (let i = 0; i < quantity; i++) {
-      const cardToBeAdded = new Card(
-        card.cardName,
-        card.cardManaCost,
-        card.cardType,
-        card.cardColor,
-        card.cardPowerToughness
-      )
+      const cardToBeAdded = new Card({
+        name: card.name,
+        manaCost: card.manaCost,
+        type: card.type,
+        color: card.color,
+        powerToughness: card.powerToughness,
+      })
       this.cards.push(cardToBeAdded)
     }
   }
@@ -44,8 +44,8 @@ export default class Deck {
    * @returns {Deck} - The deck with card removed.
    */
   removeCardByName (cardToBeRemoved) {
-    const cardNameLowerCase = cardToBeRemoved.toLowerCase()
-    this.cards = this.cards.filter(card => card.cardName.toLowerCase() !== cardNameLowerCase)
+    const nameLowerCase = cardToBeRemoved.toLowerCase()
+    this.cards = this.cards.filter(card => card.name.toLowerCase() !== nameLowerCase)
     return this
   }
 
