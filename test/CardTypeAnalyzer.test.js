@@ -268,7 +268,7 @@ describe('CardTypeAnalyzer', () => {
     const analyzer = new CardTypeAnalyzer(deck)
     const ratio = analyzer.getCreatureToSpellRatio()
 
-    expect(ratio).toBe(999)
+    expect(ratio).toBe(Infinity)
     })
 
     test('should return control deck type', () => {
@@ -292,7 +292,7 @@ describe('CardTypeAnalyzer', () => {
 
     const analyzer = new CardTypeAnalyzer(deck)
     const ratio = analyzer.getCreatureToSpellRatio()
-    const deckType = analyzer.getTypeOfDeck(ratio)
+    const deckType = analyzer.getDeckArchetypek(ratio)
 
     expect(deckType).toBe('midrange')
     })
@@ -318,7 +318,7 @@ describe('CardTypeAnalyzer', () => {
 
     const analyzer = new CardTypeAnalyzer(deck)
     const ratio = analyzer.getCreatureToSpellRatio()
-    const deckType = analyzer.getTypeOfDeck(ratio)
+    const deckType = analyzer.getDeckArchetypek(ratio)
 
     expect(deckType).toBe('control')
   })
@@ -344,7 +344,7 @@ describe('CardTypeAnalyzer', () => {
 
     const analyzer = new CardTypeAnalyzer(deck)
     const ratio = analyzer.getCreatureToSpellRatio()
-    const deckType = analyzer.getTypeOfDeck(ratio)
+    const deckType = analyzer.getDeckArchetypek(ratio)
 
     expect(deckType).toBe('aggressive')
   })

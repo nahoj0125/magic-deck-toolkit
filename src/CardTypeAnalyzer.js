@@ -22,14 +22,14 @@ export default class CardTypeAnalyzer {
    */
   getTypeDistribution() {
     const cards = this.deck.cards
-    const cardTypeDistribution = {}
+    const typeDistribution = {}
 
     cards.forEach((card) => {
-      const cardType = card.type
-      cardTypeDistribution[cardType] = (cardTypeDistribution[cardType] || 0) + 1
+      const type = card.type
+      typeDistribution[type] = (typeDistribution[type] || 0) + 1
     })
 
-    return cardTypeDistribution
+    return typeDistribution
   }
 
   getLandCount() {
@@ -129,8 +129,8 @@ export default class CardTypeAnalyzer {
   // Handles division with 0
   #handleZeroSpells(creatures) {
     if (creatures > 0) {
-      // Returns a large number to trigger getTypeOfDeck()
-      return 999
+      // Return Infinity to trigger getTypeOfDeck()
+      return Infinity
     } else {
       return 0
     }
@@ -141,7 +141,7 @@ export default class CardTypeAnalyzer {
    * @param {number} creatureToSpellRatio - The ratio from getCreatureToSpellRatio()
    * @returns {string} The deck's archetype: 'aggressive', 'control', 'midrange', or 'undecided'
    */
-  getTypeOfDeck(creatureToSpellRatio) {
+  getDeckArchetypek(creatureToSpellRatio) {
     if (this.#isDeckAggressive(creatureToSpellRatio)) {
       return 'aggressive'
     } else if (this.#isDeckControl(creatureToSpellRatio)) {
