@@ -14,7 +14,7 @@ export default class Card {
    * @param {string} cardColor - The card color(s) (white, blue, black, red, green, colorless  or a combination e.g. white green)
    * @param {string} cardPowerToughness - Power/toughness for creatures only, in format "power/toughness" (e.g., "2/2"), empty string for non-creatures
    */
-  constructor (cardName, cardManaCost, cardType, cardColor, cardPowerToughness) {
+  constructor ( {cardName, cardManaCost, cardType, cardColor, cardPowerToughness} ) {
     this.cardName = this.#processCardName(cardName)
     this.cardManaCost = this.#processManaCost(cardManaCost)
     this.cardType = this.#processCardType(cardType)
