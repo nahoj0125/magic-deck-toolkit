@@ -41,21 +41,21 @@ import Deck from './Deck.js'
 const myDeck = new Deck('Gruul Aggro')
 
 // Add a single card
-myDeck.addNewCard({
-  cardName: 'Lightning Bolt',
-  cardManaCost: 'R',
-  cardType: 'instant',
-  cardColor: 'red',
-  cardPowerToughness: ''
+myDeck.addCard({
+  name: 'Lightning Bolt',
+  manaCost: 'R',
+  type: 'instant',
+  color: 'red',
+  powerToughness: ''
 })
 
 // Add multiple copies at once
-myDeck.addNewCard({
-  cardName: 'Llanowar Elves',
-  cardManaCost: 'G',
-  cardType: 'creature',
-  cardColor: 'green',
-  cardPowerToughness: '1/1'
+myDeck.addCard({
+  name: 'Llanowar Elves',
+  manaCost: 'G',
+  type: 'creature',
+  color: 'green',
+  powerToughness: '1/1'
 }, 4)
 
 // Remove cards
@@ -110,7 +110,7 @@ console.log(typeAnalyzer.getTemporarySpellsCount())
 
 // Determine deck archetype
 const ratio = typeAnalyzer.getCreatureToSpellRatio()
-const archetype = typeAnalyzer.getTypeOfDeck(ratio)
+const archetype = typeAnalyzer.getDeckArchetype(ratio)
 console.log(`This is an ${archetype} deck`) // aggressive, control, midrange, or undecided
 ```
 
@@ -122,11 +122,11 @@ Creates a validated Magic: The Gathering card.
 
 **Constructor Parameters:**
 
-* cardName (string): Card name (letters, numbers, spaces, commas, apostrophes, hyphens)
-* cardManaCost (string): Mana cost using MTG notation (X, W, U, B, R, G, 0-9), empty string for lands
-* cardType (string): Card type (instant, sorcery, creature, enchantment, land, artifact, planeswalker)
-* cardColor (string): One or more colors separated by spaces (e.g., "red" or "white blue")
-* cardPowerToughness (string): Power/toughness for creatures (e.g., "2/2"), empty string for non-creatures
+* name (string): Card name (letters, numbers, spaces, commas, apostrophes, hyphens)
+* manaCost (string): Mana cost using MTG notation (X, W, U, B, R, G, 0-9), empty string for lands
+* type (string): Card type (instant, sorcery, creature, enchantment, land, artifact, planeswalker)
+* color (string): One or more colors separated by spaces (e.g., "red" or "white blue")
+* powerToughness (string): Power/toughness for creatures (e.g., "2/2"), empty string for non-creatures
 
 ### Deck
 
@@ -134,7 +134,7 @@ Manages a collection of up to 60 cards.
 
 **Methods:**
 
-* addNewCard(cardObject, quantity): Add card(s) to deck. Takes an object with properties: {cardName, cardManaCost, cardType, cardColor, cardPowerToughness}. Optional quantity parameter (default: 1)
+* addCard(cardObject, quantity): Add card(s) to deck. Takes an object with properties: {cardName, cardManaCost, cardType, cardColor, cardPowerToughness}. Optional quantity parameter (default: 1)
 * clearDeck(): Remove all cards
 * getCards(): Get array of all Card objects in deck
 * getTotalCards(): Get total card count
@@ -147,7 +147,7 @@ Analyzes mana costs and color distribution.
 **Methods:**
 
 * getAverageManaCost(): Returns average converted mana cost
-* getColorDistributionOfCardsInDeck(): Returns color distribution object
+* getColorDistributionOfCards(): Returns color distribution object
 * getManaCurve(): Returns object with mana costs and their frequencies
 * getManaCurvePercentages(): Returns mana curve as percentages
 
@@ -161,7 +161,7 @@ Analyzes card type distribution and deck archetype.
 * getPermanentTypeCardCount(): Count cards that remain on battlefield
 * getTemporarySpellsCount(): Count instant and sorcery spells
 * getTypeDistribution(): Returns object with card types and counts
-* getTypeOfDeck(ratio): Determine archetype (aggressive, control, midrange, undecided)
+* getDeckArchetype(ratio): Determine archetype (aggressive, control, midrange, undecided)
 
 ## Validation Rules
 
