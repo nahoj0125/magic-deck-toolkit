@@ -4,27 +4,27 @@ import Card from '../src/Card.js'
 describe('Card', () => {
   test('Should return a card with all properties.', () => {
     const card = new Card({
-      cardName: 'counterspell',
-      cardManaCost: 'UU',
-      cardType: 'instant',
-      cardColor: 'blue',
-      cardPowerToughness: ''
+      name: 'counterspell',
+      manaCost: 'UU',
+      type: 'instant',
+      color: 'blue',
+      powerToughness: '',
     })
 
-    expect(card.cardName).toBe('counterspell')
-    expect(card.cardManaCost).toBe('UU')
-    expect(card.cardType).toBe('instant')
-    expect(card.cardColor).toStrictEqual(['blue'])
+    expect(card.name).toBe('counterspell')
+    expect(card.manaCost).toBe('UU')
+    expect(card.type).toBe('instant')
+    expect(card.color).toStrictEqual(['blue'])
   })
 
   test('Should fail when card name is empty.', () => {
     expect(() => {
       const card = new Card({
-        cardName: '',
-        cardManaCost: 'UU',
-        cardType: 'instant',
-        cardColor: 'blue',
-        cardPowerToughness: ''
+        name: '',
+        manaCost: 'UU',
+        type: 'instant',
+        color: 'blue',
+        powerToughness: '',
       })
       return card
     }).toThrow()
@@ -33,11 +33,11 @@ describe('Card', () => {
   test('Should fail when card name is whitespace.', () => {
     expect(() => {
       const card = new Card({
-        cardName: '        ',
-        cardManaCost: 'UU',
-        cardType: 'instant',
-        cardColor: 'blue',
-        cardPowerToughness: ''
+        name: '        ',
+        manaCost: 'UU',
+        type: 'instant',
+        color: 'blue',
+        powerToughness: '',
       })
       return card
     }).toThrow()
@@ -45,36 +45,36 @@ describe('Card', () => {
 
   test('Should handle empty mana cost for lands.', () => {
     const card = new Card({
-      cardName: 'island',
-      cardManaCost: '',
-      cardType: 'land',
-      cardColor: 'blue',
-      cardPowerToughness: ''
+      name: 'island',
+      manaCost: '',
+      type: 'land',
+      color: 'blue',
+      powerToughness: '',
     })
 
-    expect(card.cardManaCost).toBe('')
+    expect(card.manaCost).toBe('')
   })
 
   test('Should handle multicolored mana cost', () => {
     const card = new Card({
-      cardName: 'knight of autumn',
-      cardManaCost: '1GW',
-      cardType: 'creature',
-      cardColor: 'green white',
-      cardPowerToughness: '2/1'
+      name: 'knight of autumn',
+      manaCost: '1GW',
+      type: 'creature',
+      color: 'green white',
+      powerToughness: '2/1',
     })
 
-    expect(card.cardColor).toStrictEqual(['green', 'white'])
+    expect(card.color).toStrictEqual(['green', 'white'])
   })
 
   test('Should fail when an invalid card type is chosen.', () => {
     expect(() => {
       const card = new Card({
-        cardName: 'counterspell',
-        cardManaCost: 'UU',
-        cardType: 'notValidCardType',
-        cardColor: 'blue',
-        cardPowerToughness: ''
+        name: 'counterspell',
+        manaCost: 'UU',
+        type: 'notValidType',
+        color: 'blue',
+        powerToughness: '',
       })
       return card
     }).toThrow()
@@ -83,11 +83,11 @@ describe('Card', () => {
   test('Should fail when an invalid color is chosen.', () => {
     expect(() => {
       const card = new Card({
-        cardName: 'counterspell',
-        cardManaCost: 'UU',
-        cardType: 'instant',
-        cardColor: 'notacolor',
-        cardPowerToughness: ''
+        name: 'counterspell',
+        manaCost: 'UU',
+        type: 'instant',
+        color: 'notacolor',
+        powerToughness: '',
       })
       return card
     }).toThrow()
@@ -95,24 +95,24 @@ describe('Card', () => {
 
   test('Should handle the power and toughness of a creature type card.', () => {
     const card = new Card({
-      cardName: 'serra angel',
-      cardManaCost: '3WW',
-      cardType: 'creature',
-      cardColor: 'white',
-      cardPowerToughness: '4/4'
+      name: 'serra angel',
+      manaCost: '3WW',
+      type: 'creature',
+      color: 'white',
+      powerToughness: '4/4',
     })
 
-    expect(card.cardPowerToughness).toBe('4/4')
+    expect(card.powerToughness).toBe('4/4')
   })
 
   test('Should handle the power and toughness of a non-creature type card', () => {
     const card = new Card({
-      cardName: 'counterspell',
-      cardManaCost: 'UU',
-      cardType: 'instant',
-      cardColor: 'blue',
-      cardPowerToughness: ''
+      name: 'counterspell',
+      manaCost: 'UU',
+      type: 'instant',
+      color: 'blue',
+      powerToughness: '',
     })
-    expect(card.cardPowerToughness).toBe('')
+    expect(card.powerToughness).toBe('')
   })
 })
