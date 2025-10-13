@@ -25,7 +25,7 @@ export default class CardTypeAnalyzer {
     const cardTypeDistribution = {}
 
     cards.forEach((card) => {
-      const cardType = card.cardType
+      const cardType = card.type
       cardTypeDistribution[cardType] = (cardTypeDistribution[cardType] || 0) + 1
     })
 

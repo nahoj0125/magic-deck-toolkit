@@ -6,28 +6,28 @@ describe('CardTypeAnalyzer', () => {
   test('Should return card type distribution', () => {
     const deck = new Deck('Johans deck')
 
-    deck.addNewCard({
-      cardName: 'counterspell',
-      cardManaCost: 'UU',
-      cardType: 'instant',
-      cardColor: 'blue',
-      cardPowerToughness: '',
+    deck.addCard({
+      name: 'counterspell',
+      manaCost: 'UU',
+      type: 'instant',
+      color: 'blue',
+      powerToughness: '',
     })
 
-    deck.addNewCard({
-      cardName: 'lightning bolt',
-      cardManaCost: 'R',
-      cardType: 'instant',
-      cardColor: 'red',
-      cardPowerToughness: '',
+    deck.addCard({
+      name: 'lightning bolt',
+      manaCost: 'R',
+      type: 'instant',
+      color: 'red',
+      powerToughness: '',
     })
 
-    deck.addNewCard({
-      cardName: 'ghalta, primal hunger',
-      cardManaCost: 'GG10',
-      cardType: 'creature',
-      cardColor: 'green',
-      cardPowerToughness: '12/12',
+    deck.addCard({
+      name: 'ghalta, primal hunger',
+      manaCost: 'GG10',
+      type: 'creature',
+      color: 'green',
+      powerToughness: '12/12',
     })
 
     const analyzer = new CardTypeAnalyzer(deck)
@@ -39,28 +39,28 @@ describe('CardTypeAnalyzer', () => {
   test('should return how many permanents from a deck', () => {
     const deck = new Deck('Johans deck')
 
-    deck.addNewCard({
-      cardName: 'counterspell',
-      cardManaCost: 'UU',
-      cardType: 'instant',
-      cardColor: 'blue',
-      cardPowerToughness: '',
+    deck.addCard({
+      name: 'counterspell',
+      manaCost: 'UU',
+      type: 'instant',
+      color: 'blue',
+      powerToughness: '',
     })
 
-    deck.addNewCard({
-      cardName: 'lightning bolt',
-      cardManaCost: 'R',
-      cardType: 'instant',
-      cardColor: 'red',
-      cardPowerToughness: '',
+    deck.addCard({
+      name: 'lightning bolt',
+      manaCost: 'R',
+      type: 'instant',
+      color: 'red',
+      powerToughness: '',
     })
 
-    deck.addNewCard({
-      cardName: 'ghalta, primal hunger',
-      cardManaCost: 'GG10',
-      cardType: 'creature',
-      cardColor: 'green',
-      cardPowerToughness: '12/12',
+    deck.addCard({
+      name: 'ghalta, primal hunger',
+      manaCost: 'GG10',
+      type: 'creature',
+      color: 'green',
+      powerToughness: '12/12',
     })
 
     const analyzer = new CardTypeAnalyzer(deck)
@@ -72,12 +72,12 @@ describe('CardTypeAnalyzer', () => {
   test('should return the amount of lands', () => {
     const deck = new Deck('Johans deck')
 
-    deck.addNewCard({
-      cardName: 'plains',
-      cardManaCost: '',
-      cardType: 'land',
-      cardColor: 'white',
-      cardPowerToughness: '',
+    deck.addCard({
+      name: 'plains',
+      manaCost: '',
+      type: 'land',
+      color: 'white',
+      powerToughness: '',
     })
 
     const analyzer = new CardTypeAnalyzer(deck)
@@ -89,12 +89,12 @@ describe('CardTypeAnalyzer', () => {
   test('should return the amount of creatures', () => {
     const deck = new Deck('Johans deck')
 
-    deck.addNewCard({
-      cardName: 'ghalta, primal hunger',
-      cardManaCost: 'GG10',
-      cardType: 'creature',
-      cardColor: 'green',
-      cardPowerToughness: '12/12',
+    deck.addCard({
+      name: 'ghalta, primal hunger',
+      manaCost: 'GG10',
+      type: 'creature',
+      color: 'green',
+      powerToughness: '12/12',
     })
 
     const analyzer = new CardTypeAnalyzer(deck)
@@ -106,12 +106,12 @@ describe('CardTypeAnalyzer', () => {
     test('should return the amount of instant', () => {
     const deck = new Deck('Johans deck')
 
-    deck.addNewCard({
-      cardName: 'counterspell',
-      cardManaCost: 'UU',
-      cardType: 'instant',
-      cardColor: 'blue',
-      cardPowerToughness: '',
+    deck.addCard({
+      name: 'counterspell',
+      manaCost: 'UU',
+      type: 'instant',
+      color: 'blue',
+      powerToughness: '',
     })
 
     const analyzer = new CardTypeAnalyzer(deck)
@@ -123,12 +123,12 @@ describe('CardTypeAnalyzer', () => {
     test('should return the amount of sorceries', () => {
     const deck = new Deck('Johans deck')
 
-    deck.addNewCard({
-      cardName: 'shatter the sky',
-      cardManaCost: '2WW',
-      cardType: 'sorcery',
-      cardColor: 'white',
-      cardPowerToughness: '',
+    deck.addCard({
+      name: 'shatter the sky',
+      manaCost: '2WW',
+      type: 'sorcery',
+      color: 'white',
+      powerToughness: '',
     })
 
     const analyzer = new CardTypeAnalyzer(deck)
@@ -140,12 +140,12 @@ describe('CardTypeAnalyzer', () => {
   test('should return the amount of artifacts', () => {
     const deck = new Deck('Johans deck')
 
-    deck.addNewCard({
-      cardName: 'colossus hammer',
-      cardManaCost: '1',
-      cardType: 'artifact',
-      cardColor: 'colorless',
-      cardPowerToughness: '',
+    deck.addCard({
+      name: 'colossus hammer',
+      manaCost: '1',
+      type: 'artifact',
+      color: 'colorless',
+      powerToughness: '',
     })
 
     const analyzer = new CardTypeAnalyzer(deck)
@@ -157,12 +157,12 @@ describe('CardTypeAnalyzer', () => {
     test('should return the amount of enchantment', () => {
     const deck = new Deck('Johans deck')
 
-    deck.addNewCard({
-      cardName: 'banishing light',
-      cardManaCost: '2W',
-      cardType: 'enchantment',
-      cardColor: 'white',
-      cardPowerToughness: '',
+    deck.addCard({
+      name: 'banishing light',
+      manaCost: '2W',
+      type: 'enchantment',
+      color: 'white',
+      powerToughness: '',
     })
 
     const analyzer = new CardTypeAnalyzer(deck)
@@ -174,12 +174,12 @@ describe('CardTypeAnalyzer', () => {
   test('should return the amount of planeswalkers', () => {
     const deck = new Deck('Johans deck')
 
-    deck.addNewCard({
-      cardName: 'elspeth, undaunted hero',
-      cardManaCost: '3W',
-      cardType: 'planeswalker',
-      cardColor: 'white',
-      cardPowerToughness: '',
+    deck.addCard({
+      name: 'elspeth, undaunted hero',
+      manaCost: '3W',
+      type: 'planeswalker',
+      color: 'white',
+      powerToughness: '',
     })
 
     const analyzer = new CardTypeAnalyzer(deck)
@@ -191,28 +191,28 @@ describe('CardTypeAnalyzer', () => {
   test('should return amount of temporary spells', () => {
     const deck = new Deck('Johans deck')
 
-    deck.addNewCard({
-      cardName: 'counterspell',
-      cardManaCost: 'UU',
-      cardType: 'instant',
-      cardColor: 'blue',
-      cardPowerToughness: '',
+    deck.addCard({
+      name: 'counterspell',
+      manaCost: 'UU',
+      type: 'instant',
+      color: 'blue',
+      powerToughness: '',
     })
 
-    deck.addNewCard({
-      cardName: 'lightning bolt',
-      cardManaCost: 'R',
-      cardType: 'instant',
-      cardColor: 'red',
-      cardPowerToughness: '',
+    deck.addCard({
+      name: 'lightning bolt',
+      manaCost: 'R',
+      type: 'instant',
+      color: 'red',
+      powerToughness: '',
     })
 
-    deck.addNewCard({
-      cardName: 'ghalta, primal hunger',
-      cardManaCost: 'GG10',
-      cardType: 'creature',
-      cardColor: 'green',
-      cardPowerToughness: '12/12',
+    deck.addCard({
+      name: 'ghalta, primal hunger',
+      manaCost: 'GG10',
+      type: 'creature',
+      color: 'green',
+      powerToughness: '12/12',
     })
 
     const analyzer = new CardTypeAnalyzer(deck)
@@ -224,20 +224,20 @@ describe('CardTypeAnalyzer', () => {
     test('should return creature to spell ratio', () => {
     const deck = new Deck('Johans deck')
 
-    deck.addNewCard({
-      cardName: 'counterspell',
-      cardManaCost: 'UU',
-      cardType: 'instant',
-      cardColor: 'blue',
-      cardPowerToughness: '',
+    deck.addCard({
+      name: 'counterspell',
+      manaCost: 'UU',
+      type: 'instant',
+      color: 'blue',
+      powerToughness: '',
     })
 
-    deck.addNewCard({
-      cardName: 'ghalta, primal hunger',
-      cardManaCost: 'GG10',
-      cardType: 'creature',
-      cardColor: 'green',
-      cardPowerToughness: '12/12',
+    deck.addCard({
+      name: 'ghalta, primal hunger',
+      manaCost: 'GG10',
+      type: 'creature',
+      color: 'green',
+      powerToughness: '12/12',
     })
 
     const analyzer = new CardTypeAnalyzer(deck)
@@ -249,20 +249,20 @@ describe('CardTypeAnalyzer', () => {
   test('should return creature to spell ratio when there are no temporary spells', () => {
     const deck = new Deck('Johans deck')
 
-    deck.addNewCard({
-      cardName: 'serra angel',
-      cardManaCost: '3WW',
-      cardType: 'creature',
-      cardColor: 'white',
-      cardPowerToughness: '4/4'
+    deck.addCard({
+      name: 'serra angel',
+      manaCost: '3WW',
+      type: 'creature',
+      color: 'white',
+      powerToughness: '4/4'
     })
 
-    deck.addNewCard({
-      cardName: 'reassembling skeleton',
-      cardManaCost: '1B',
-      cardType: 'creature',
-      cardColor: 'black',
-      cardPowerToughness: '1/1'
+    deck.addCard({
+      name: 'reassembling skeleton',
+      manaCost: '1B',
+      type: 'creature',
+      color: 'black',
+      powerToughness: '1/1'
     })
 
     const analyzer = new CardTypeAnalyzer(deck)
@@ -274,20 +274,20 @@ describe('CardTypeAnalyzer', () => {
     test('should return control deck type', () => {
     const deck = new Deck('Johans deck')
 
-    deck.addNewCard({
-      cardName: 'counterspell',
-      cardManaCost: 'UU',
-      cardType: 'instant',
-      cardColor: 'blue',
-      cardPowerToughness: '',
+    deck.addCard({
+      name: 'counterspell',
+      manaCost: 'UU',
+      type: 'instant',
+      color: 'blue',
+      powerToughness: '',
     })
 
-    deck.addNewCard({
-      cardName: 'ghalta, primal hunger',
-      cardManaCost: 'GG10',
-      cardType: 'creature',
-      cardColor: 'green',
-      cardPowerToughness: '12/12',
+    deck.addCard({
+      name: 'ghalta, primal hunger',
+      manaCost: 'GG10',
+      type: 'creature',
+      color: 'green',
+      powerToughness: '12/12',
     })
 
     const analyzer = new CardTypeAnalyzer(deck)
@@ -300,20 +300,20 @@ describe('CardTypeAnalyzer', () => {
   test('should return control deck type', () => {
     const deck = new Deck('Johans deck')
 
-    deck.addNewCard({
-      cardName: 'counterspell',
-      cardManaCost: 'UU',
-      cardType: 'instant',
-      cardColor: 'blue',
-      cardPowerToughness: '',
+    deck.addCard({
+      name: 'counterspell',
+      manaCost: 'UU',
+      type: 'instant',
+      color: 'blue',
+      powerToughness: '',
     })
 
-    deck.addNewCard({
-      cardName: 'lightning bolt',
-      cardManaCost: 'R',
-      cardType: 'instant',
-      cardColor: 'red',
-      cardPowerToughness: '',
+    deck.addCard({
+      name: 'lightning bolt',
+      manaCost: 'R',
+      type: 'instant',
+      color: 'red',
+      powerToughness: '',
     })
 
     const analyzer = new CardTypeAnalyzer(deck)
@@ -326,20 +326,20 @@ describe('CardTypeAnalyzer', () => {
     test('should return aggressive deck type', () => {
     const deck = new Deck('Johans deck')
 
-    deck.addNewCard({
-      cardName: 'ghalta, primal hunger',
-      cardManaCost: 'GG10',
-      cardType: 'creature',
-      cardColor: 'green',
-      cardPowerToughness: '12/12',
+    deck.addCard({
+      name: 'ghalta, primal hunger',
+      manaCost: 'GG10',
+      type: 'creature',
+      color: 'green',
+      powerToughness: '12/12',
     })
 
-    deck.addNewCard({
-      cardName: 'serra angel',
-      cardManaCost: '3WW',
-      cardType: 'creature',
-      cardColor: 'white',
-      cardPowerToughness: '4/4'
+    deck.addCard({
+      name: 'serra angel',
+      manaCost: '3WW',
+      type: 'creature',
+      color: 'white',
+      powerToughness: '4/4'
     })
 
     const analyzer = new CardTypeAnalyzer(deck)
