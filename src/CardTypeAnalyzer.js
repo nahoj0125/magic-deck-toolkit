@@ -141,7 +141,7 @@ export default class CardTypeAnalyzer {
    * @param {number} creatureToSpellRatio - The ratio from getCreatureToSpellRatio()
    * @returns {string} The deck's archetype: 'aggressive', 'control', 'midrange', or 'undecided'
    */
-  getDeckArchetypek(creatureToSpellRatio) {
+  getDeckArchetype(creatureToSpellRatio) {
     if (this.#isDeckAggressive(creatureToSpellRatio)) {
       return 'aggressive'
     } else if (this.#isDeckControl(creatureToSpellRatio)) {
