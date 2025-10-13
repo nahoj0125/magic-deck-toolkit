@@ -6,28 +6,28 @@ describe('ManaAnalyzer', () => {
   test('should return mana curve of the deck', () => {
     const deck = new Deck('Johans deck')
 
-    deck.addNewCard({
-      cardName: 'counterspell',
-      cardManaCost: 'UU',
-      cardType: 'instant',
-      cardColor: 'blue',
-      cardPowerToughness: '',
+    deck.addCard({
+      name: 'counterspell',
+      manaCost: 'UU',
+      type: 'instant',
+      color: 'blue',
+      powerToughness: '',
     })
 
-    deck.addNewCard({
-      cardName: 'lightning bolt',
-      cardManaCost: 'R',
-      cardType: 'instant',
-      cardColor: 'red',
-      cardPowerToughness: '',
+    deck.addCard({
+      name: 'lightning bolt',
+      manaCost: 'R',
+      type: 'instant',
+      color: 'red',
+      powerToughness: '',
     })
 
-    deck.addNewCard({
-      cardName: 'ghalta, primal hunger',
-      cardManaCost: 'GG10',
-      cardType: 'creature',
-      cardColor: 'green',
-      cardPowerToughness: '12/12',
+    deck.addCard({
+      name: 'ghalta, primal hunger',
+      manaCost: 'GG10',
+      type: 'creature',
+      color: 'green',
+      powerToughness: '12/12',
     })
 
     const analyzer = new ManaAnalyzer(deck)
@@ -39,28 +39,28 @@ describe('ManaAnalyzer', () => {
   test('Should return average mana cost of the deck.', () => {
     const deck = new Deck('Johans deck')
 
-    deck.addNewCard({
-      cardName: 'counterspell',
-      cardManaCost: 'UU',
-      cardType: 'instant',
-      cardColor: 'blue',
-      cardPowerToughness: '',
+    deck.addCard({
+      name: 'counterspell',
+      manaCost: 'UU',
+      type: 'instant',
+      color: 'blue',
+      powerToughness: '',
     })
 
-    deck.addNewCard({
-      cardName: 'lightning bolt',
-      cardManaCost: 'R',
-      cardType: 'instant',
-      cardColor: 'red',
-      cardPowerToughness: '',
+    deck.addCard({
+      name: 'lightning bolt',
+      manaCost: 'R',
+      type: 'instant',
+      color: 'red',
+      powerToughness: '',
     })
 
-    deck.addNewCard({
-      cardName: 'ghalta, primal hunger',
-      cardManaCost: 'GG10',
-      cardType: 'creature',
-      cardColor: 'green',
-      cardPowerToughness: '12/12',
+    deck.addCard({
+      name: 'ghalta, primal hunger',
+      manaCost: 'GG10',
+      type: 'creature',
+      color: 'green',
+      powerToughness: '12/12',
     })
 
     const analyzer = new ManaAnalyzer(deck)
@@ -72,32 +72,32 @@ describe('ManaAnalyzer', () => {
   test('Should return color distribution of the deck.', () => {
     const deck = new Deck('Johans deck')
 
-    deck.addNewCard({
-      cardName: 'counterspell',
-      cardManaCost: 'UU',
-      cardType: 'instant',
-      cardColor: 'blue',
-      cardPowerToughness: '',
+    deck.addCard({
+      name: 'counterspell',
+      manaCost: 'UU',
+      type: 'instant',
+      color: 'blue',
+      powerToughness: '',
     })
 
-    deck.addNewCard({
-      cardName: 'lightning bolt',
-      cardManaCost: 'R',
-      cardType: 'instant',
-      cardColor: 'red',
-      cardPowerToughness: '',
+    deck.addCard({
+      name: 'lightning bolt',
+      manaCost: 'R',
+      type: 'instant',
+      color: 'red',
+      powerToughness: '',
     })
 
-    deck.addNewCard({
-      cardName: 'ghalta, primal hunger',
-      cardManaCost: 'GG10',
-      cardType: 'creature',
-      cardColor: 'green',
-      cardPowerToughness: '12/12',
+    deck.addCard({
+      name: 'ghalta, primal hunger',
+      manaCost: 'GG10',
+      type: 'creature',
+      color: 'green',
+      powerToughness: '12/12',
     })
 
     const analyzer = new ManaAnalyzer(deck)
-    const colorDistribution = analyzer.getColorDistributionOfCardsInDeck()
+    const colorDistribution = analyzer.getColorDistributionOfCards()
 
     expect(colorDistribution).toEqual({
       white: 0,
@@ -112,28 +112,28 @@ describe('ManaAnalyzer', () => {
   test('Should calculate percentages of mana curve', () => {
     const deck = new Deck('Johans deck')
 
-    deck.addNewCard({
-      cardName: 'counterspell',
-      cardManaCost: 'UU',
-      cardType: 'instant',
-      cardColor: 'blue',
-      cardPowerToughness: '',
+    deck.addCard({
+      name: 'counterspell',
+      manaCost: 'UU',
+      type: 'instant',
+      color: 'blue',
+      powerToughness: '',
     })
 
-    deck.addNewCard({
-      cardName: 'lightning bolt',
-      cardManaCost: 'R',
-      cardType: 'instant',
-      cardColor: 'red',
-      cardPowerToughness: '',
+    deck.addCard({
+      name: 'lightning bolt',
+      manaCost: 'R',
+      type: 'instant',
+      color: 'red',
+      powerToughness: '',
     })
 
-    deck.addNewCard({
-      cardName: 'ghalta, primal hunger',
-      cardManaCost: 'GG10',
-      cardType: 'creature',
-      cardColor: 'green',
-      cardPowerToughness: '12/12',
+    deck.addCard({
+      name: 'ghalta, primal hunger',
+      manaCost: 'GG10',
+      type: 'creature',
+      color: 'green',
+      powerToughness: '12/12',
     })
 
     const analyzer = new ManaAnalyzer(deck)

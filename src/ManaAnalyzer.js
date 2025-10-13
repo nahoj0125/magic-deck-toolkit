@@ -14,8 +14,8 @@ export default class ManaAnalyzer {
     const manaCurve = {}
 
     cards.forEach((card) => {
-      const coloredMana = this.#countColorManaSymbols(card.cardManaCost)
-      const uncoloredMana = this.#countUncoloredManaSymbols(card.cardManaCost)
+      const coloredMana = this.#countColorManaSymbols(card.manaCost)
+      const uncoloredMana = this.#countUncoloredManaSymbols(card.manaCost)
       const totalMana = coloredMana + uncoloredMana
 
       manaCurve[totalMana] = (manaCurve[totalMana] || 0) + 1
@@ -65,7 +65,7 @@ export default class ManaAnalyzer {
     )
   }
 
-  getColorDistributionOfCardsInDeck() {
+  getColorDistributionOfCards() {
     const colorDistribution = {
       white: 0,
       blue: 0,
@@ -87,7 +87,7 @@ export default class ManaAnalyzer {
   }
 
   #countColorsInCard(card, colorDistribution) {
-    for (const color of card.cardColor) {
+    for (const color of card.color) {
       colorDistribution[color]++
     }
   }
