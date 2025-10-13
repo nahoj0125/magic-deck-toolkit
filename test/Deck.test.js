@@ -5,71 +5,77 @@ describe('Deck', () => {
   test('Should add a card to a deck.', () => {
     const deck = new Deck('Johans deck')
 
-    deck.addNewCard({
-      cardName: 'counterspell',
-      cardManaCost: 'UU',
-      cardType: 'instant',
-      cardColor: 'blue',
-      cardPowerToughness: ''
-    }
-    )
+    deck.addCard({
+      name: 'counterspell',
+      manaCost: 'UU',
+      type: 'instant',
+      color: 'blue',
+      powerToughness: '',
+    })
 
     expect(deck.cards.length).toBe(1)
-    expect(deck.cards[0].cardName).toBe('counterspell')
-    expect(deck.cards[0].cardManaCost).toBe('UU')
-    expect(deck.cards[0].cardType).toBe('instant')
+    expect(deck.cards[0].name).toBe('counterspell')
+    expect(deck.cards[0].manaCost).toBe('UU')
+    expect(deck.cards[0].type).toBe('instant')
   })
 
   test('Should add multiple cards to a deck.', () => {
     const deck = new Deck('Johans deck')
 
-    deck.addNewCard({
-      cardName: 'counterspell',
-      cardManaCost: 'UU',
-      cardType: 'instant',
-      cardColor: 'blue',
-      cardPowerToughness: ''
-    }, 60
+    deck.addCard(
+      {
+        name: 'counterspell',
+        manaCost: 'UU',
+        type: 'instant',
+        color: 'blue',
+        powerToughness: '',
+      },
+      60
     )
 
     expect(deck.cards.length).toBe(60)
-    expect(deck.cards[0].cardName).toBe('counterspell')
-    expect(deck.cards[0].cardManaCost).toBe('UU')
-    expect(deck.cards[0].cardType).toBe('instant')
+    expect(deck.cards[0].name).toBe('counterspell')
+    expect(deck.cards[0].manaCost).toBe('UU')
+    expect(deck.cards[0].type).toBe('instant')
   })
 
   test('Should fail when deck exceeds 60 cards.', () => {
     const deck = new Deck('Johans deck')
 
     expect(() => {
-      deck.addNewCard({
-        cardName: 'counterspell',
-        cardManaCost: 'UU',
-        cardType: 'instant',
-        cardColor: 'blue',
-        cardPowerToughness: ''
-      }, 61)
+      deck.addCard(
+        {
+          name: 'counterspell',
+          manaCost: 'UU',
+          type: 'instant',
+          color: 'blue',
+          powerToughness: '',
+        },
+        61
+      )
     }).toThrow()
   })
 
   test('Should remove a card from the deck.', () => {
     const deck = new Deck('Johans deck')
 
-    deck.addNewCard({
-      cardName: 'counterspell',
-      cardManaCost: 'UU',
-      cardType: 'instant',
-      cardColor: 'blue',
-      cardPowerToughness: ''
+    deck.addCard({
+      name: 'counterspell',
+      manaCost: 'UU',
+      type: 'instant',
+      color: 'blue',
+      powerToughness: '',
     })
 
-    deck.addNewCard({
-      cardName: 'lightning bolt',
-      cardManaCost: 'R',
-      cardType: 'instant',
-      cardColor: 'red',
-      cardPowerToughness: ''
-    }, 2
+    deck.addCard(
+      {
+        name: 'lightning bolt',
+        manaCost: 'R',
+        type: 'instant',
+        color: 'red',
+        powerToughness: '',
+      },
+      2
     )
 
     deck.removeCardByName('lightning bolt')
@@ -80,12 +86,12 @@ describe('Deck', () => {
   test('Should remove all cards from the deck.', () => {
     const deck = new Deck('Johans deck')
 
-    deck.addNewCard({
-      cardName: 'counterspell',
-      cardManaCost: 'UU',
-      cardType: 'instant',
-      cardColor: 'blue',
-      cardPowerToughness: ''
+    deck.addCard({
+      name: 'counterspell',
+      manaCost: 'UU',
+      type: 'instant',
+      color: 'blue',
+      powerToughness: '',
     })
 
     deck.clearDeck()
@@ -96,21 +102,23 @@ describe('Deck', () => {
   test('Should get total amout of cards in a deck.', () => {
     const deck = new Deck('Johans deck')
 
-    deck.addNewCard({
-      cardName: 'counterspell',
-      cardManaCost: 'UU',
-      cardType: 'instant',
-      cardColor: 'blue',
-      cardPowerToughness: ''
+    deck.addCard({
+      name: 'counterspell',
+      manaCost: 'UU',
+      type: 'instant',
+      color: 'blue',
+      powerToughness: '',
     })
 
-    deck.addNewCard({
-      cardName: 'lightning bolt',
-      cardManaCost: 'R',
-      cardType: 'instant',
-      cardColor: 'red',
-      cardPowerToughness: ''
-    }, 2
+    deck.addCard(
+      {
+        name: 'lightning bolt',
+        manaCost: 'R',
+        type: 'instant',
+        color: 'red',
+        powerToughness: '',
+      },
+      2
     )
 
     deck.getTotalCards()
@@ -120,34 +128,34 @@ describe('Deck', () => {
   test('Should return an array with all cards in the deck.', () => {
     const deck = new Deck('Johans deck')
 
-    deck.addNewCard({
-      cardName: 'counterspell',
-      cardManaCost: 'UU',
-      cardType: 'instant',
-      cardColor: 'blue',
-      cardPowerToughness: ''
+    deck.addCard({
+      name: 'counterspell',
+      manaCost: 'UU',
+      type: 'instant',
+      color: 'blue',
+      powerToughness: '',
     })
 
-    deck.addNewCard({
-      cardName: 'lightning bolt',
-      cardManaCost: 'R',
-      cardType: 'instant',
-      cardColor: 'red',
-      cardPowerToughness: ''
+    deck.addCard({
+      name: 'lightning bolt',
+      manaCost: 'R',
+      type: 'instant',
+      color: 'red',
+      powerToughness: '',
     })
 
     const cards = deck.getCards()
-    console.log(cards)
-    expect(cards[0].cardName).toBe('counterspell')
-    expect(cards[0].cardManaCost).toBe('UU')
-    expect(cards[0].cardType).toBe('instant')
-    expect(cards[0].cardColor).toStrictEqual(['blue'])
-    expect(cards[0].cardPowerToughness).toBe('')
 
-    expect(cards[1].cardName).toBe('lightning bolt')
-    expect(cards[1].cardManaCost).toBe('R')
-    expect(cards[1].cardType).toBe('instant')
-    expect(cards[1].cardColor).toStrictEqual(['red'])
-    expect(cards[0].cardPowerToughness).toBe('')
+    expect(cards[0].name).toBe('counterspell')
+    expect(cards[0].manaCost).toBe('UU')
+    expect(cards[0].type).toBe('instant')
+    expect(cards[0].color).toStrictEqual(['blue'])
+    expect(cards[0].powerToughness).toBe('')
+
+    expect(cards[1].name).toBe('lightning bolt')
+    expect(cards[1].manaCost).toBe('R')
+    expect(cards[1].type).toBe('instant')
+    expect(cards[1].color).toStrictEqual(['red'])
+    expect(cards[0].powerToughness).toBe('')
   })
 })
