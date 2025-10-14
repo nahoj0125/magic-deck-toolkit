@@ -16,6 +16,11 @@ A JavaScript module for managing and analyzing Magic: The Gathering decks. This 
 
 ## Installation
 ```
+npm install mtg-deck-toolkit
+```
+
+For development:
+```bash
 git clone https://github.com/nahoj0125/magic-deck-toolkit.git
 cd magic-deck-toolkit
 npm install
@@ -25,18 +30,30 @@ npm install
 
 ### Creating Cards
 ```javascript
-import Card from './Card.js'
+import { Card } from 'mtg-deck-toolkit'
 
 // Create an instant spell
-const bolt = new Card('Lightning Bolt', 'R', 'instant', 'red', '')
+const bolt = new Card({
+  name: 'Lightning Bolt',
+  manaCost: 'R',
+  type: 'instant',
+  color: 'red',
+  powerToughness: ''
+})
 
 // Create a creature
-const ghalta = new Card('Ghalta, Primal Hunger', '10GG', 'creature', 'green', '12/12')
+const ghalta = new Card({
+  name: 'Ghalta, Primal Hunger',
+  manaCost: '10GG',
+  type: 'creature',
+  color: 'green',
+  powerToughness: '12/12'
+})
 ```
 
 ### Building a deck
 ```javascript
-import Deck from './Deck.js'
+import { Deck } from 'mtg-deck-toolkit'
 
 const myDeck = new Deck('Gruul Aggro')
 
@@ -68,7 +85,7 @@ console.log(myDeck.getCards()) // Array of all cards
 
 ### Analyzing mana
 ```javascript
-import ManaAnalyzer from './ManaAnalyzer.js'
+import { ManaAnalyzer } from 'mtg-deck-toolkit'
 
 const analyzer = new ManaAnalyzer(myDeck)
 
@@ -81,7 +98,7 @@ const avgCost = analyzer.getAverageManaCost()
 console.log(`Average CMC: ${avgCost}`)
 
 // Get color distribution
-const colors = analyzer.getColorDistributionOfCardsInDeck()
+const colors = analyzer.getColorDistributionOfCards()
 // Example: { white: 0, blue: 5, black: 0, red: 15, green: 20, colorless: 0 }
 
 // Get mana curve as percentages
@@ -91,7 +108,7 @@ const percentages = analyzer.getManaCurvePercentages()
 
 ### Analyzing Card Types
 ```javascript
-import CardTypeAnalyzer from './CardTypeAnalyzer.js'
+import { CardTypeAnalyzer } from 'mtg-deck-toolkit'
 
 const typeAnalyzer = new CardTypeAnalyzer(myDeck)
 
@@ -199,7 +216,7 @@ The `CardTypeAnalyzer` classifies decks based on creature-to-spell ratio:
 ### Setup
 
 ```bash
-git clone https://github.com/yourusername/magic-deck-toolkit.git
+git clone https://github.com/nahoj0125/magic-deck-toolkit.git
 cd magic-deck-toolkit
 npm install
 ```
