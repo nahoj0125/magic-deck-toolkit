@@ -20,7 +20,7 @@
     "lint:fix": "npx eslint ./src --fix || exit 0"
   },
   "keywords": ["mtg", "magic-the-gathering", "deck", "analyzer", "mana-curve"],
-  "author": "",
+  "author": "Johan Persson <jp223yp@student.lnu.se>",
   "license": "MIT",
   "devDependencies": {
     "@jest/globals": "^29.7.0",
