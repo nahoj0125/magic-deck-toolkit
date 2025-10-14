@@ -1,8 +1,16 @@
 {
-  "name": "l2",
+  "name": "mtg-deck-analyzer",
   "version": "1.0.0",
   "type": "module",
+  "description": "A Magic: The Gathering deck analysis library",
   "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./Card": "./Card.js",
+    "./Deck": "./Deck.js",
+    "./ManaAnalyzer": "./ManaAnalyzer.js",
+    "./CardTypeAnalyzer": "./CardTypeAnalyzer.js"
+  },
   "scripts": {
     "start": "node index.js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
@@ -11,10 +19,9 @@
     "lint": "npx eslint ./src || exit 0",
     "lint:fix": "npx eslint ./src --fix || exit 0"
   },
-  "keywords": [],
+  "keywords": ["mtg", "magic-the-gathering", "deck", "analyzer", "mana-curve"],
   "author": "",
   "license": "MIT",
-  "description": "",
   "devDependencies": {
     "@jest/globals": "^29.7.0",
     "jest": "^30.1.3",
