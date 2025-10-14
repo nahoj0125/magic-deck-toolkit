@@ -1,5 +1,5 @@
 {
-  "name": "mtg-deck-analyzer",
+  "name": "mtg-deck-toolkit",
   "version": "1.0.0",
   "type": "module",
   "description": "A Magic: The Gathering deck analysis library",
